@@ -19,20 +19,18 @@ import {
 // import messages from './messages';
 
 function Tasks(props) {
-  const { col, itemTodos } = props;
+  const { col, itemTodos, handleEdit, handeleDelete } = props;
   let tasks = [];
   if (itemTodos) {
     tasks = itemTodos.filter(item => item.status === col);
   }
-  const handeleDelete = () => {
-    console.log('delete');
-  };
-  const handleEdit = () => {
-    console.log('edit');
-  };
-  return tasks.map(task => (
-    <div key={task.id}>
-      <Card>
+
+  return tasks.map(task => {
+    const a = () => {
+      handeleDelete(task.id);
+    };
+    return (
+      <Card key={task.id}>
         <CardContent>
           <Grid
             container
@@ -55,18 +53,13 @@ function Tasks(props) {
           >
             <Icon fontSize="small">edit_icon</Icon>
           </Fab>
-          <Fab
-            color="primary"
-            aria-label="Delete"
-            size="small"
-            onClick={handeleDelete}
-          >
+          <Fab color="primary" aria-label="Delete" size="small" onClick={a}>
             <Icon fontSize="small">delete_icon</Icon>
           </Fab>
         </CardActions>
       </Card>
-    </div>
-  )
+    );
+  });
 }
 
 Tasks.propTypes = {

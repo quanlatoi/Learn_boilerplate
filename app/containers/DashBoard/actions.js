@@ -4,7 +4,15 @@
  *
  */
 
-import { DEFAULT_ACTION, GET_LIST, GET_SUCCESS, GET_FAILED } from './constants';
+import {
+  DEFAULT_ACTION,
+  GET_LIST,
+  GET_SUCCESS,
+  GET_FAILED,
+  DELETE_TASK,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_FAILED,
+} from './constants';
 
 export function defaultAction() {
   return {
@@ -23,5 +31,20 @@ export const getListTaskSuccess = data => ({
 
 export const getListTaskFalse = error => ({
   type: GET_FAILED,
+  error,
+});
+
+export const editTaskRequest = task => ({
+  type: DELETE_TASK,
+  payload: task,
+});
+
+export const deletetTaskRequestSuccess = data => ({
+  type: DELETE_TASK_SUCCESS,
+  payload: data,
+});
+
+export const deletetTaskRequestFailed = error => ({
+  type: DELETE_TASK_FAILED,
   error,
 });

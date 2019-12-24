@@ -29,20 +29,33 @@ export function TaskLists(props) {
   useInjectReducer({ key: 'tasks', reducer });
   useInjectSaga({ key: 'tasks', saga });
   const { taskActionsCreator, tasks } = props;
+  const itemTodos = tasks.data;
 
   useEffect(() => {
     taskActionsCreator.getListTask();
   }, [taskActionsCreator]);
 
   function renderDashBoard() {
-    const itemTodos = tasks.data;
+    const handeleDelete = id => {
+      taskActionsCreator.editTaskRequest(id);
+    };
+
+    const handleEdit = () => {
+      console.log('edit');
+    };
+
     let xhtml = null;
     xhtml = (
       <Grid container direction="row" spacing={0}>
         {Status.map(status => (
           <Grid key={status.value} className={classes.root} item xs={12} md={4}>
             <Box className={classes.box}>{status.label}</Box>
-            <Tasks col={status.value} itemTodos={itemTodos} />
+            <Tasks
+              col={status.value}
+              itemTodos={itemTodos}
+              handeleDelete={handeleDelete}
+              handleEdit={handleEdit}
+            />
           </Grid>
         ))}
       </Grid>

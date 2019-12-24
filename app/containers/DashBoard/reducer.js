@@ -5,7 +5,13 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION, GET_SUCCESS, GET_FAILED } from './constants';
+import {
+  DEFAULT_ACTION,
+  GET_SUCCESS,
+  GET_FAILED,
+  DELETE_TASK_SUCCESS,
+  DELETE_TASK_FAILED,
+} from './constants';
 
 export const initialState = {
   data: [],
@@ -25,6 +31,14 @@ const yReducer = (state = initialState, action) =>
         return {
           data: [...action.error],
         };
+      case DELETE_TASK_SUCCESS: {
+        const listTask = [...state.data];
+        const a = listTask.findIndex(elem => elem.id === action.payload);
+        listTask.splice(a, 1);
+        return {
+          data: listTask,
+        };
+      }
     }
   });
 

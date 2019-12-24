@@ -29,3 +29,7 @@ export const STATUS_CODE = {
 export const GET_LIST = 'GET_LIST';
 export const GET_SUCCESS = 'GET_SUCCESS';
 export const GET_FAILED = 'GET_FAILED';
+
+export const DELETE_TASK = 'DELETE_TASK';
+export const DELETE_TASK_SUCCESS = 'DELETE_TASK_SUCCESS';
+export const DELETE_TASK_FAILED = 'DELETE_TASK_FAILED';
